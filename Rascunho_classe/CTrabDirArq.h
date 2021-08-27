@@ -3,7 +3,7 @@
 
 #include <iostream>
 using namespace std;
-using std::string;
+
 
 
 class CTrabDirArq
