@@ -93,7 +93,7 @@ bool CTrabDirArq::checaDiscoValido_CTrabDirArq(const string& LetraDisco)
     }
 }
 
-// Talvez nao seja desnecessario, uma vez que, ao criar diretorio com _mkdir() ja retorna se foi
+// Talvez seja desnecessario, uma vez que, ao criar diretorio com _mkdir() ja retorna se foi
 // criado com sucesso ou nao (CTrabDirArq::criaDir_CTrabDirArq)
 /**
  * Verifica se um diretorio existe dado o nome do diretorio no path atual.
