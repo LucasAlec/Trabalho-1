@@ -1,26 +1,13 @@
-﻿//
-//
-#include "InsereArqEmDir.h"
-#include "TrocaCarecter_AporB.h"//-------AQUI
-#include "ObtemCurrent_Directory.h"//----Para usar 'ObtemCurrent_Directory'
-#include "GeraArqDadosNumericos_0.h"//------Para usar a função 'GeraArqDadosNumericos_0_CTrabComDir_0'
-#include "GeraArqDadosNumericos_1.h"//------Para usar a função 'GeraArqDadosNumericos_0_CTrabComDir_1'
-//
-//
-#include "ChecaDisoValido.h"
-#include "ChecaSeDirExiste.h"
-#include "Cria_DirValido.h"
-#include "EscreveEmArq.h"
-#include "lendoEmArq.h"
-//
-//
-//
-#include "windows.h"//-----Escrever Caracteres Latinos
+﻿#include "windows.h"//-----Escrever Caracteres Latinos
 #include <direct.h>/*Necessário para usar a função _mkdir(const char*)*/
 #include <iostream>//-Vai usar cin e/ou cout
 #include <fstream>//-----Usar Objetos "ofstream  Escrever em arquivos" e "ifstream ler em Arquivos
 #include <cstdio>//----Usar exit(0): exit(1);...
 #include <new>//-----Para alocação de vetor dinãmico
+
+// include na classe
+#include <CTrabDirArq.h>
+
 using std::bad_alloc;// --Para tratamento de exceção
 ////////////////using std::cout;
 ////////////////using std::cin;
@@ -30,6 +17,9 @@ using namespace std;//Para dispensar std:: em cin e cout
 //
 int main()
 {
+	//Estanciando o Objeto da classe CTrabDirArq
+	CTrabDirArq Obj_CTrabDirArq;
+
     string               Tecla;
 	string               DiscoValido;
 	string               DirValido;
@@ -42,6 +32,7 @@ int main()
 	//
 	bool                 DiscoNaoValido;
 	DiscoNaoValido = false;
+
 	//
 	SetConsoleOutputCP(GetACP());
 	//
@@ -143,7 +134,7 @@ int main()
 	DirOndeColocarArquivo = "C:/ZZZ__SSSS";
 	NomeDoArquivo = "Arquivo.txt";
 
-	GeraArqDadosNumericos_1_CTrabComDir_0(//Dadose de entrada
+	Obj_CTrabDirArq.GeraArqDadosNumericos_1_CTrabComDir_0(//Dadose de entrada
 		NumRegionsStringMaisDados,
 		NumDeString,//----->
 		ListaStringArq,
@@ -624,7 +615,7 @@ int main()
 	cout << "  FORNEÇA  UM  DIRETÓRIO   VÁLIDO." << "\n";
 	cout << "\n";
 	cin >> DirValido;
-	if (ChecaSeDirExiste(DirValido) == true)
+	if (Obj_CTrabDirArq.ChecaSeDirExiste(DirValido) == true)
 	{
 		cout << "Diretório = " << DirValido << "   Já existe!!!" << "\n";
 		cout << "\n";
@@ -643,7 +634,7 @@ int main()
 		cout << "\n";
 		cin >> Tecla;
 		//
-		if (Cria_DirValido(DirValido) == true)
+		if (Obj_CTrabDirArq.Cria_DirValido(DirValido) == true)
 		{
 			cout << "Diretório = " << DirValido << "   Criado com Sucesso" << "\n";
 			cout << "\n";
@@ -707,7 +698,7 @@ int main()
 							cout << " Forneça o número de casas decimais para os doubles " << "\n";
 							cin >> NcasasDecimais;
 							//
-							EscreveEmArq(DirValido, Arquivo, Nvet, NcasasDecimais, Vet);
+							Obj_CTrabDirArq.EscreveEmArq(DirValido, Arquivo, Nvet, NcasasDecimais, Vet);
 							//
 							string     DirMaisArq = DirValido + "/" + Arquivo;
 							cout << "  Veja seus dados no Diretório + arquivo:  " << DirMaisArq;
@@ -729,7 +720,7 @@ int main()
 					cout << " Forneça o número de casas decimais para os doubles " << "\n";
 					cin >> NcasasDecimais;
 					//
-					EscreveEmArq(DirValido, Arquivo, Nvet, NcasasDecimais, Vet);
+					Obj_CTrabDirArq.EscreveEmArq(DirValido, Arquivo, Nvet, NcasasDecimais, Vet);
 					//
 					string     DirMaisArq = DirValido + "/" + Arquivo;
 					cout << "  Veja seus dados no Diretório + arquivo:  " << DirMaisArq;

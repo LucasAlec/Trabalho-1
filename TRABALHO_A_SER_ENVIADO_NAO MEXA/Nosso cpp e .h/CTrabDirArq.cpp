@@ -6,6 +6,7 @@
 #include <fstream> //-----Usar Objetos "ofstream  Escrever em arquivos" e "ifstream ler em Arquivos
 #include <iomanip> //-------Escrever double   com precisão especificada   
 #include <new>//-----Para alocação de vetor dinãmico
+#include <string>
 
 using std::bad_alloc;// --Para tratamento de exceção
 using std::setprecision;//-------Para especificara a precisão
@@ -17,7 +18,84 @@ CTrabDirArq::CTrabDirArq()
 
 CTrabDirArq::~CTrabDirArq()
 {
+	Dealocacao_din_dos_vetores_inteiros();
+	Dealocacao_din_dos_vetores_string_1d();
+	Dealocacao_din_dos_vetores_string_2d();
 }
+
+//metodos de alocacao:
+
+int n = 5;
+
+void CTrabDirArq::Alocacao_din_dos_vetores_inteiros(int& n) {
+	
+	try
+	{
+		NumArqDeCadaDir_CTrabDirArq = new int[n];
+	}
+	catch (bad_alloc)
+	{
+		cout << "Problema de alocacao.... Tente de novo..." << endl;
+	}
+};
+
+void CTrabDirArq::Alocacao_din_dos_vetores_string_1d(int& n) {
+
+
+	try
+	{
+		Dir_CTrabDirArq = new string[n];
+	}
+	catch (bad_alloc)
+	{
+		cout << "Problema de alocacao.... Tente de novo..." << endl;
+	}
+};
+
+void CTrabDirArq::Alocacao_din_dos_vetores_string_2d(int& n, int& m) {
+
+	try
+	{
+		ArqEmCadaDir_CTrabDirArq = new string*[n];
+	}
+	catch (bad_alloc)
+	{
+		cout << "Problema de alocacao.... Tente de novo..." << endl;
+	}
+
+	try
+	{
+		for (unsigned i = 0; i < ArqEmCadaDir_CTrabDirArq.size(); i++) {
+
+			ArqEmCadaDir_CTrabDirArq[i] = new string[m];
+		}
+	}
+	catch (bad_alloc)
+	{
+		cout << "Problema de alocacao.... Tente de novo..." << endl;
+	}
+};
+
+//metodos de dealocacao:
+
+void CTrabDirArq::Dealocacao_din_dos_vetores_inteiros() {
+	delete[]NumArqDeCadaDir_CTrabDirArq;
+};
+void CTrabDirArq::Dealocacao_din_dos_vetores_string_1d() {
+	delete[]Dir_CTrabDirArq;
+};
+void CTrabDirArq::Dealocacao_din_dos_vetores_string_2d() {
+
+	unsigned size_of_array = ArqEmCadaDir_CTrabDirArq.size();
+	for (unsigned i = 0; i < size_of_array; i++) {
+		delete[]ArqEmCadaDir_CTrabDirArq[i];
+
+	};
+	delete[]ArqEmCadaDir_CTrabDirArq;
+};
+
+
+
 
 //metodos:
 

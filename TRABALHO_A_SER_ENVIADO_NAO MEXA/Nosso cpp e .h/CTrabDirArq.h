@@ -14,9 +14,13 @@ public:
 	~CTrabDirArq();
 
 	//metodos para alocacao:
-	//void Alocacao_din_dos_vetores(int);
+	void Alocacao_din_dos_vetores_inteiros(int& n);
+	void Alocacao_din_dos_vetores_string_1d(int& n);
+	void Alocacao_din_dos_vetores_string_2d(int& n, int& m);
 	//metodos para dealocacao
-	
+	void Dealocacao_din_dos_vetores_inteiros();
+	void Dealocacao_din_dos_vetores_string_1d();
+	void Dealocacao_din_dos_vetores_string_2d();
 
 	//metodos
 	void CaracterProibidosDirArq(const int Ncarcter, string   CaracterProibido[]);
